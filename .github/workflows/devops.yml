@@ -8,21 +8,24 @@ on: push
 jobs:
   code:
    #### STEPS ####
-   runs-on: ubuntu-latest
-   steps:
+   runs-on: ubuntu-latest  #runner os
+   steps: #steps
      - name: Code checkout
-       run: echo "Code checkout done"
+       uses: actions/checkout@v7  #actions
   build:
+    needs: code
     runs-on: ubuntu-latest
     steps:
      - name: Code Build
-       run: echo "Code build done"
+       run: echo "Docker todo"
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
      - name: Code test
        run: echo "Code test done"
   deploy:
+     needs: test
      runs-on: ubuntu-latest
      steps:
      - name: Code Deploy
